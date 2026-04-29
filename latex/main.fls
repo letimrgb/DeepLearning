@@ -1,4 +1,4 @@
-PWD C:/Users/jeroe/Documents/Artificial Intelligence/Deep Learning/DeepLearning
+PWD C:/Users/jeroe/Documents/Artificial Intelligence/Deep Learning/DeepLearning/latex
 INPUT c:/texlive/2021/texmf.cnf
 INPUT c:/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
@@ -288,30 +288,6 @@ INPUT c:/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT c:/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT c:/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT c:/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
-INPUT c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmrc7t.tfm
 OUTPUT main.pdf
 INPUT c:/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
@@ -319,15 +295,10 @@ INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmrc7t.vf
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT main.aux
 INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
-INPUT c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
