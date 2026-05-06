@@ -1,5 +1,5 @@
+% !TeX root = main.tex
 \documentclass[conference]{IEEEtran}
-
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -15,8 +15,8 @@
 \maketitle
 
 \section{Introduction}
-Problem description and a bit about RNN's
-% section Sectie! (end)
+Problem description and a bit about RNN's.
+
 \section{Methodology}
 The laser measurement is a type of sequential data. To predict further values we apply two different Recurrent Neural Networks (RNNs), which process sequential data by retaining information from previous steps. The models we choose are discussed further in the corresponding subsection. We preprocess the data by scaling with the \texttt{MinMaxscaler()} from Sklearn, which scales the data linearly between values 0 and 1. We optimize the models using grid search to obtain the best configuration of hyperparameters. We measure their performance with the Mean Absolute Error (MAE) and Mean Squared Error (MSE), given by
 \begin{align}
@@ -31,7 +31,7 @@ GRU does...
 
 To correspond to the measures we use to map the performance of the models, we use the loss function \texttt{MSELoss()} from PyTorch.
 
-As an optimizer we use Adam, which is an adaptive learning rate optimization method introduced by \textcolor{red}{Kingma and Ba 2014}. Adam incorporates momentum as an estimate of the first order moment of the gradient, and it applies bias correction in response to the fact that the moments are initialized at the origin.
+As an optimizer we use Adam, which is an adaptive learning rate optimization method introduced by \cite{kingma2014adam}. Adam incorporates momentum as an estimate of the first order moment of the gradient, and it applies bias correction in response to the fact that the moments are initialized at the origin.
 
 \section{Results}
 Beste performance van modellen (na tunen) with configuration
@@ -41,5 +41,9 @@ Best number of past time steps to consider (answer to question B)
 8 mei resultaten
 
 \section{Conclusion}
+Conclusie
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography}
 
 \end{document}
