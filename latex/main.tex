@@ -15,7 +15,7 @@
 \maketitle
 
 \section{Introduction}
-Hallo
+Problem description and a bit about RNN's
 % section Sectie! (end)
 \section{Methodology}
 The laser measurement is a type of sequential data. To predict further values we apply two different Recurrent Neural Networks (RNNs), which process sequential data by retaining information from previous steps. The models we choose are discussed further in the corresponding subsection. We preprocess the data by scaling with the \texttt{MinMaxscaler()} from Sklearn, which scales the data linearly between values 0 and 1. We optimize the models using grid search to obtain the best configuration of hyperparameters. We measure their performance with the Mean Absolute Error (MAE) and Mean Squared Error (MSE), given by
