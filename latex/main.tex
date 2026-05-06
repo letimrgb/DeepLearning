@@ -9,18 +9,43 @@
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
-\title{Conference Paper Title}
-\author{Cas Denteneer & Jeroen & Lara Timmers (7098308) & Laurens }
-\date{Utrecht University | INFOMDPLR | \today}
+\title{Assignment 1\\INFOMDPLR}
+\author{\IEEEauthorblockN{Cas Denteneer}
+	\IEEEauthorblockA{
+		\textit{studentnummer}\\
+		\textit{email}}
+	\and
+	\IEEEauthorblockN{Jeroen Lombaers}
+	\IEEEauthorblockA{
+		\textit{6867553} \\
+		\textit{j.j.h.lombaers@students.uu.nl}}
+	\and
+	\IEEEauthorblockN{Lara Timmers}
+	\IEEEauthorblockA{
+		\textit{7098308} \\
+		\textit{email}}
+	\and
+	\IEEEauthorblockN{Laurens}
+	\IEEEauthorblockA{
+		\textit{studentnummer}\\
+		\textit{email}}
+}
+\date{\today}
 \maketitle
 
 \section{Introduction}
-Problem description and a bit about RNN's.
+The task is to predict the value of a laser measurement using a neural network.
+First, a real-life dataset of a laser measurement is given.
+This data needs to be scaled before training.
+We then need to train a neural network model to predict one step ahead of data point.
+After training, the data is scaled back so that the model's predictions can be compared with the real measurements.
+
+a bit about RNN's.
 
 \section{Methodology}
 The laser measurement is a type of sequential data. To predict further values we apply two different Recurrent Neural Networks (RNNs), which process sequential data by retaining information from previous steps. The models we choose are discussed further in the corresponding subsection. We preprocess the data by scaling with the \texttt{MinMaxscaler()} from Sklearn, which scales the data linearly between values 0 and 1. We optimize the models using grid search to obtain the best configuration of hyperparameters. We measure their performance with the Mean Absolute Error (MAE) and Mean Squared Error (MSE), given by
 \begin{align}
-\mathrm{MAE} &= \frac{1}{n} \sum_{i=1}^{n} | y_i - \hat{y}_i |, \,\,\, \mathrm{MSE} &= \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2,
+	\mathrm{MAE} & = \frac{1}{n} \sum_{i=1}^{n} | y_i - \hat{y}_i |, \,\,\, \mathrm{MSE} & = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2,
 \end{align}
 where $y_i$ is the real value and $\hat{y}_i$ the value predicted by the model. After obtaining the test data we apply the best model with the best hyperparameter configuration we obtained during the training phase and report its performance.
 
