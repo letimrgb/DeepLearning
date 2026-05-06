@@ -18,17 +18,25 @@
 Hallo
 % section Sectie! (end)
 \section{Methodology}
+The laser measurement is a type of sequential data. To predict further values we apply two different Recurrent Neural Networks (RNNs), which process sequential data by retaining information from previous steps. The models we choose are discussed further in the corresponding subsection. We preprocess the data by scaling with the \texttt{MinMaxscaler()} from Sklearn, which scales the data linearly between values 0 and 1. We optimize the models using grid search to obtain the best configuration of hyperparameters. We measure their performance with the Mean Absolute Error (MAE) and Mean Squared Error (MSE), given by
+\begin{align}
+\mathrm{MAE} &= \frac{1}{n} \sum_{i=1}^{n} | y_i - \hat{y}_i |, \,\,\, \mathrm{MSE} &= \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2,
+\end{align}
+where $y_i$ is the real value and $\hat{y}_i$ the value predicted by the model. After obtaining the test data we apply the best model with the best hyperparameter configuration we obtained during the training phase and report its performance.
+
 \subsection{Models}
-LSTM and GRU
-Loss function MSELoss compare MAELoss too
-Optimizer nu Adam
+The models we used are Long Short-Term Memory (LSTM) and Gated Recurrent Unit (GRU) RNN's from PyTorch. RNN's can predict sequential data by looking back to previous steps, making it suitable for our task. We chose to use LSTM and GRU because   ... lit source?
+LSTM does...
+GRU does...
 
-TODO toevoegen GRU en andere loss function (MAE)
+To correspond to the measures we use to map the performance of the models, we use the loss function \texttt{MSELoss()} from PyTorch.
 
-\subsection{Preprocessing and hyperparameter tuning}
+As an optimizer we use Adam, which is an adaptive learning rate optimization method introduced by \textcolor{red}{Kingma and Ba 2014}. Adam incorporates momentum as an estimate of the first order moment of the gradient, and it applies bias correction in response to the fact that the moments are initialized at the origin.
 
 \section{Results}
-Beste performance van aantal modellen (na tunen)
+Beste performance van modellen (na tunen) with configuration
+
+Best number of past time steps to consider (answer to question B)
 
 8 mei resultaten
 
