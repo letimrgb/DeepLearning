@@ -25,10 +25,10 @@
 		\textit{7098308} \\
 		\textit{email}}
 	\and
-	\IEEEauthorblockN{Laurens}
+	\IEEEauthorblockN{Laurens van Ballegooijen}
 	\IEEEauthorblockA{
-		\textit{studentnummer}\\
-		\textit{email}}
+		\textit{9869980}\\
+		\textit{l.e.f.vanballegooijen@students.uu.nl}}
 }
 \date{\today}
 \maketitle
@@ -62,6 +62,26 @@ As an optimizer we use Adam, which is an adaptive learning rate optimization met
 Beste performance van modellen (na tunen) with configuration
 
 Best number of past time steps to consider (answer to question B)
+
+Based on our experimentation prior to applying our best models on the test data, we have found the optimal combination of model and hyperparameters, as shown in the table below.
+
+\begin{table}[htpb]
+\centering
+\caption{Best Results per Model and Loss Function Combination}
+\label{table:model_comparison}
+\begin{tabular}{llcccc}
+\hline
+\textbf{Model} & \textbf{Loss Function} & \textbf{Interval} & \textbf{Hidden Size} & \textbf{Learning Rate} & \textbf{Validation Loss} \\ \hline
+GRU  & MSE & 10 & 16 & 0.0500 & 0.\textbf{000774} \\ 
+LSTM & MSE & 50 & 4  & 0.0500 & 0.001340 \\ 
+LSTM & MAE & 2  & 8  & 0.0001 & 0.470361 \\ 
+GRU  & MAE & 30 & 64 & 0.1000 & 0.633217 \\ \hline
+\end{tabular}
+\label{table:model_comparison}
+\end{table}
+
+As shown in Table \ref{table:model_comparison}, the best model based on our tuning, is the GRU model with Mean Squared Error (MSE) as the loss function. In combination with an interval of 10, hidden size 16, and a learning rate of 0.05, the validation loss comes out to an effective 0.000774. Being almost half the validation loss of the next optimal model combination solidifies this model combination as the most effective for testing.
+
 
 8 mei resultaten
 
