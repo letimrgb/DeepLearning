@@ -100,7 +100,7 @@ The GRU model with MSE loss achieved the best validation performance with an int
 
 When applied to the test data, the model was able to capture the general oscillatory behavior of the signal but struggled with changes in amplitude and period.
 This resulted in relatively high MAE and MSE values, especially MSE because it is sensitive to larger prediction errors.
-In conclusion, the results show that RNN-based models can learn temporal patterns in the data, but struggle with variation.
+In conclusion, the results show that LSTM and GRU can learn temporal patterns in the data, but struggle with variation, resulting in a prediction for our test case that is significantly different.
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
