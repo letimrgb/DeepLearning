@@ -82,8 +82,16 @@ GRU  & MAE & 30 & 64 & 0.1000 & 0.633217 \\ \hline
 
 As shown in Table \ref{table:model_comparison}, the best model based on our tuning, is the GRU model with Mean Squared Error (MSE) as the loss function. In combination with an interval of 10, hidden size 16, and a learning rate of 0.05, the validation loss comes out to an effective 0.000774. Being almost half the validation loss of the next optimal model combination solidifies this model combination as the most effective for testing.
 
+\subsection{Testing}
+We compare the results from the best configuration of hyperparameters of the best model to the test data. The model we found was Gru with MSELoss, and the evaluation of its prediction compared to the actual test data yields an MAE of 49.7 and a MSE of 4103. 
+In figure \ref{fig:realvspred} we see that the real data oscillation suddenly drops in amplitude, which explain the high MSE and MAE values. MSE is more sensitive to outliers, which explains why the MSE value is much higher then the MAE.
+The model also does not seem to adjust to a change in the period of the oscillation in the laser movement, which is visible at the first 70 steps.
 
-8 mei resultaten
+\begin{figure}
+  \includegraphics[width=\linewidth]{testvspred.png}
+  \caption{Actual laser measurement and predicted laser trajectory by GRU RNN with MSELoss and hyperparameters 'interval': 30, 'hidden_size': 64, and 'learning rate': 0.01.}
+  \label{fig:realvspred}
+\end{figure}
 
 \section{Conclusion}
 Conclusie
