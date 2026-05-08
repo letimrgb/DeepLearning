@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex main"] 1778246888.2717 "main.aux" "main.bbl" "main" 1778246888.65095 2
+["bibtex main"] 1778246888.2717 "main.aux" "main.bbl" "main" 1778246921.71506 2
   "./bibliography.bib" 1778235809 191 1e405b307b27dee0684b314a2d814744 ""
   "c:/texlive/2026/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1775822918 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "main.aux" 1778246880 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "main.aux" 1778246920 1293 14a4d9a691fed6c7104b4dfd07f858c0 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1778246885.59245 "c:/Users/larae/Documents/Uni Master/INFOMDLR Deep learning/DeepLearning/latex/main.tex" "main.pdf" "main" 1778246887.73933 2
+["pdflatex"] 1778246920.14908 "c:/Users/larae/Documents/Uni Master/INFOMDLR Deep learning/DeepLearning/latex/main.tex" "main.pdf" "main" 1778246921.71556 2
   "IEEEtran.cls" 1778054258 288304 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
-  "c:/Users/larae/Documents/Uni Master/INFOMDLR Deep learning/DeepLearning/latex/main.tex" 1778246883 5574 bf15dca6a7a4f1517500bb0d6320acbb ""
+  "c:/Users/larae/Documents/Uni Master/INFOMDLR Deep learning/DeepLearning/latex/main.tex" 1778246917 5574 bf15dca6a7a4f1517500bb0d6320acbb ""
   "c:/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc" 1775822238 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1775822569 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2026/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1775822024 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -83,10 +83,10 @@
   "c:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1775825335 5619402 045890036aad9b52b154ef5568e59d3a ""
   "c:/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1775825475 3648460 9777a13ef3ff4d583bbcfdb35a5d6a7c ""
   "c:/texlive/2026/texmf.cnf" 1775825312 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1778246880 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "main.aux" 1778246920 1293 14a4d9a691fed6c7104b4dfd07f858c0 "pdflatex"
   "main.bbl" 1778246888 0 d41d8cd98f00b204e9800998ecf8427e "bibtex main"
-  "main.tex" 1778246883 5574 bf15dca6a7a4f1517500bb0d6320acbb ""
-  "testvspred.png" 0 -1 0 ""
+  "main.tex" 1778246917 5574 bf15dca6a7a4f1517500bb0d6320acbb ""
+  "testvspred.png" 1778246762 70296 adfc60ef1a42a81fe1475a77b22feb8d ""
   (generated)
   "main.aux"
   "main.log"
