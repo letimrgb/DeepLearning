@@ -89,12 +89,18 @@ The model also does not seem to adjust to a change in the period of the oscillat
 
 \begin{figure}
   \includegraphics[width=\linewidth]{testvspred.png}
-  \caption{Actual laser measurement and predicted laser trajectory by GRU RNN with MSELoss and hyperparameters 'interval': 30, 'hidden_size': 64, and 'learning rate': 0.01.}
+  \caption{Actual laser measurement and predicted laser trajectory by GRU RNN with MSELoss and hyperparameters values \textit{interval} 30, \textit{hidden\_size}: 64, and \textit{learning rate}: 0.01.}
   \label{fig:realvspred}
 \end{figure}
 
 \section{Conclusion}
-Conclusie
+In this assignment, we used recurrent neural networks to predict future values of a laser measurement time series. 
+After scaling the data, LSTM and GRU models were trained and optimized through a grid search over several hyperparameters. 
+The GRU model with MSE loss achieved the best validation performance with an interval of 30 past time steps, hidden size 64, and learning rate 0.01.
+
+When applied to the test data, the model was able to capture the general oscillatory behavior of the signal but struggled with changes in amplitude and period. 
+This resulted in relatively high MAE and MSE values, especially MSE because it is sensitive to larger prediction errors. 
+In conclusion, the results show that RNN-based models can learn temporal patterns in the data, but struggle with variation.
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
