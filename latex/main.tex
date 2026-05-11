@@ -33,6 +33,15 @@
 \date{\today}
 \maketitle
 
+\section{Abstract}
+The value of a laser measurement is predicted using Recurrent Neural Networks (RNNs).
+A dataset of a laser measurement is scaled (using Sklearn) and used to train two types of RNNs.
+These are the PyTorch implementations of Long Short-Term Memory (LSTM) and Gated Recurrent Unit (GRU).
+Their performance is then measured using Mean Absolute Error (MAE) and Mean Squared Error (MSE).
+The best performing model was GRU with MSE as the loss function, which yields an MAE of 49.7 and an MSE of 4103.
+The model was able to capture the initial nature of the data but struggled to adapt to a subsequent change in the signal's behavior.
+We find that GRU and LSTM are capable of learning patterns in sequential data, though they may struggle with variation.
+
 \section{Introduction}
 The task is to predict the value of a laser measurement using a neural network.
 First, a real-life dataset of a laser measurement is given.
