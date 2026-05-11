@@ -54,21 +54,21 @@ The models we used are Long Short-Term Memory (LSTM) and Gated Recurrent Unit (G
 
 LSTM's work by allowing information to persist from one inference to the next \cite{Noble2025}. An LSTM looks at an input $X_t$ and outputs a value $H_t$. Through loops, information from each input-output cycle gets passed on to the next step in the network. The strength of the LSTM over other traditional RNN's is a type of storage it has that is called the memory cell. With this cell, the LSTM maintains a persistent "cell state" to store information long-term across multiple time steps. This enables it to continuously pass information from previous input-output cycles while simultaneously using gates to selectively add, remove or update information \cite{Noble2025}.
 
-The memory cell consists of three gates: the input, output, and forget gate. 
+The memory cell consists of three gates: the input, output, and forget gate.
 \begin{equation}
-    \begin{aligned}
-    i_t = \sigma(W_i h_{t-1},x_t+b_i) \\
-    o_t = \sigma(W_o h_{t-1},x_t+b_o) \\ 
-    f_t = \sigma(W_f h_{t-1},x_t+b_f)
-    \end{aligned}
+	\begin{aligned}
+		i_t = \sigma(W_i h_{t-1},x_t+b_i) \\
+		o_t = \sigma(W_o h_{t-1},x_t+b_o) \\
+		f_t = \sigma(W_f h_{t-1},x_t+b_f)
+	\end{aligned}
 \end{equation}
 
-As the names suggest, each gate is responsible for moving information to subsequent gates or hidden states. The forget gate acts first, screening what information from the previous time step to retain or forget. The input gate takes information in and determines what information to pass to memory, and finally the output gate decides what part of the internal state gets passed on to the next hidden state. 
+As the names suggest, each gate is responsible for moving information to subsequent gates or hidden states. The forget gate acts first, screening what information from the previous time step to retain or forget. The input gate takes information in and determines what information to pass to memory, and finally the output gate decides what part of the internal state gets passed on to the next hidden state.
 
-Similar to the LSTM architecture, the GRU architecture is designed to model sequential time-series data. Both architectures allow to iteratively select what information to remember and discard, only keeping the most relevant data for accurate predictions. Compared to LSTM's, the GRU architecture is much simpler. In the LSTM, the memory cell is a separate component from the hidden state, and consists of the input, output, and forget gate. In GRU, the memory cell is replaced with a "candidate activation gate" which consists of only two gates: the reset gate, and the update gate \cite{Nama2023}. The candidate activation vector combines information from both the input and the previous hidden state and then uses the vector to update the hidden state for the next step. The reset gate and the update gate determine what information from the previous hidden state to forget and what portion of the candidate activation function to add to the new hidden state. 
+Similar to the LSTM architecture, the GRU architecture is designed to model sequential time-series data. Both architectures allow to iteratively select what information to remember and discard, only keeping the most relevant data for accurate predictions. Compared to LSTM's, the GRU architecture is much simpler. In the LSTM, the memory cell is a separate component from the hidden state, and consists of the input, output, and forget gate. In GRU, the memory cell is replaced with a "candidate activation gate" which consists of only two gates: the reset gate, and the update gate \cite{Nama2023}. The candidate activation vector combines information from both the input and the previous hidden state and then uses the vector to update the hidden state for the next step. The reset gate and the update gate determine what information from the previous hidden state to forget and what portion of the candidate activation function to add to the new hidden state.
 
 \begin{equation}
-    \begin{aligned}r_t &= \sigma\left(\mathbf{W}_r \cdot [\mathbf{h}_{t-1}, \mathbf{x}_t]\right)\\z_t &= \sigma\left(\mathbf{W}_z \cdot [\mathbf{h}_{t-1}, \mathbf{x}_t]\right)\end{aligned}
+	\begin{aligned}r_t &= \sigma\left(\mathbf{W}_r \cdot [\mathbf{h}_{t-1}, \mathbf{x}_t]\right)\\z_t &= \sigma\left(\mathbf{W}_z \cdot [\mathbf{h}_{t-1}, \mathbf{x}_t]\right)\end{aligned}
 \end{equation}
 
 In both equations above, the sigmoid function is applied to the dot product of weight matrices $W_r$ and $W_z$ and the current input and previous hidden state to produce outputs for the reset and update gate respectively.
@@ -84,18 +84,20 @@ Best number of past time steps to consider (answer to question B)
 Based on our experimentation prior to applying our best models on the test data, we have found the optimal combination of model and hyperparameters, as shown in the table below.
 
 \begin{table}[htpb]
-\centering
-\caption{Best Results per Model and Loss Function Combination}
-\label{table:model_comparison}
-\begin{tabular}{llcccc}
-\hline
-\textbf{Model} & \textbf{Loss Function} & \textbf{Interval} & \textbf{Hidden Size} & \textbf{Learning Rate} & \textbf{Validation Loss} \\ \hline
-GRU  & MSE & 50 & 16 & 0.050 & 0.\textbf{000591} \\
-LSTM & MSE & 20 & 16  & 0.050 & 0.000844 \\
-LSTM & MAE & 50 & 32  & 0.10 & 0.018310 \\
-GRU  & MAE & 5  & 16 & 0.10 & 0.019853 \\ \hline
-\end{tabular}
-\label{table:model_comparison}
+	\centering
+	\caption{Best Results per Model and Loss Function Combination}
+	\label{table:model_comparison}
+	\resizebox{\columnwidth}{!}{%
+		\begin{tabular}{llcccc}
+			\hline
+			\textbf{Model} & \textbf{Loss Function} & \textbf{Interval} & \textbf{Hidden Size} & \textbf{Learning Rate} & \textbf{Validation Loss} \\ \hline
+			GRU            & MSE                    & 50                & 16                   & 0.050                  & 0.\textbf{000591}        \\
+			LSTM           & MSE                    & 20                & 16                   & 0.050                  & 0.000844                 \\
+			LSTM           & MAE                    & 50                & 32                   & 0.10                   & 0.018310                 \\
+			GRU            & MAE                    & 5                 & 16                   & 0.10                   & 0.019853                 \\ \hline
+		\end{tabular}%
+	}
+	\label{table:model_comparison}
 \end{table}
 
 As shown in Table \ref{table:model_comparison}, the best model based on our tuning, is the GRU model with Mean Squared Error (MSE) as the loss function. In combination with an interval of 50, hidden size 16, and a learning rate of 0.05, the validation loss comes out to an effective 0.000591. Combining a high look-back interval with a smaller hidden size of 16 allowed the model to still oscillate enough for accurate predictions, without shooting too far beyond the actual data points. With a validation loss almost 50\% lower than the next best model combination solidifies this model combination as the most effective for testing.
@@ -106,9 +108,9 @@ In figure \ref{fig:realvspred} we see that the real data oscillation suddenly dr
 The model also does not seem to adjust to a change in the period of the oscillation in the laser movement, which is visible at the first 70 steps.
 
 \begin{figure}
-  \includegraphics[width=\linewidth]{testvspred.png}
-  \caption{Actual laser measurement and predicted laser trajectory by GRU RNN with MSELoss and hyperparameters values \textit{interval} 30, \textit{hidden\_size}: 64, and \textit{learning rate}: 0.01.}
-  \label{fig:realvspred}
+	\includegraphics[width=\linewidth]{testvspred.png}
+	\caption{Actual laser measurement and predicted laser trajectory by GRU RNN with MSELoss and hyperparameters values \textit{interval} 30, \textit{hidden\_size}: 64, and \textit{learning rate}: 0.01.}
+	\label{fig:realvspred}
 \end{figure}
 
 \section{Conclusion}
