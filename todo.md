@@ -2,6 +2,7 @@
 # TODO
 
 Modellen selecteren 
+Hoe downsamplen? Not on magnetometers but on the time step recording.
 
 Code beginnetje (Lara)
 
