@@ -1,8 +1,11 @@
 
 # TODO
 
-Modellen selecteren
-Invesitgate choices of hyperparameters
+Modellen selecteren en testen
+Cross validation
+Loss function decline, evt andere loss functions
+Investigate choices of hyperparameters
+Visualizatie: MNE tools
 
 Opdracht:
 Compare the accuracy of the 2 types of classification, i.e. intra-subject
