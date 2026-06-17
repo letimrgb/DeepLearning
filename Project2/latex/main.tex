@@ -96,9 +96,13 @@ The computational flow of the network is as follows
 \end{aligned}
 \]
 
-During training, we apply hyperparameter tuning using grid search on dropout rate (for CNN), learning rate (for the optimizer), and batch size, which regards the batches in which the data is loaded.
-The hyperparameter configuration that has the highest accuracy during training is used for testing. We train and test the model for intra and cross-subject classification separately.
-For evaluating the performance of the model we use the measures precision, recall and accuracy.
+We apply hyperparameter tuning on the cross-subject data sets using grid search on dropout rate (for CNN), learning rate (for the optimizer), and batch size, which regards the batches in which the data is loaded.
+The hyperparameter configuration that has the highest accuracy during is used for both experiments (intra- and cross-subject).  
+We train and test the model for intra and cross-subject classification separately. 
+
+For evaluating the performance of the model we use the measures precision, recall and accuracy. 
+Furthermore, we use t-SNE projection to convert the high-dimensional penultimate layer activations data into a twodimensional scatterplot that visualizes pairwise similarities \cite{vandermaaten2008visualizing}. 
+Lastly, we consider the Sensor Saliency computed from the input gradients, which holds information on whether there are input features that dominate the classification \cite{zhang2024forward}.
 
 \section{Results}
 
@@ -124,6 +128,8 @@ Fig.~\ref{fig:raw_signal} shows a representative sample of raw MEG signals per c
 
 \subsection{Training}
 
+Initially, the model selected for the experiments had more channels and layers, and thus more parameters. The resulting classification was heavily overfitting, which we improved upon by downsizing the layers and reducing the number of convolutional layers.
+The hyperparameter configuration with the highest accuracy for the cross-validation set is $learning\_rate=0.001, batch\_size=16$ and $dropout\_rate=0.2$. We continue with these parameters for both experiments.
 
 \begin{figure}[htbp]
     \centering
@@ -131,11 +137,13 @@ Fig.~\ref{fig:raw_signal} shows a representative sample of raw MEG signals per c
     \caption{Training loss curves for both models (log scale). The cross-subject model reaches a lower final loss, reflecting its larger training set.}
     \label{fig:loss_curves}
 \end{figure}
-Fig.~\ref{fig:loss_curves} shows the training loss curves for both models on a logarithmic scale. Both curves decrease consistently over 15 epochs without signs of divergence, indicating stable training. The cross-subject model converges to a lower final loss than the intra-subject model, likely because its larger training set (64 files vs. 32) provides more gradient signal per epoch.
+Fig.~\ref{fig:loss_curves} shows the training loss curves for both models on a logarithmic scale. Both curves decrease consistently over 15 epochs without signs of divergence, indicating stable training. 
+The cross-subject model converges to a lower final loss than the intra-subject model, likely because its larger training set (64 files vs. 32) provides more gradient signal per epoch.
 
 \subsection{Classification Accuracy}
 
-Overall accuracy across all test splits is shown in Fig.~\ref{fig:accuracy_summary}. The intra-subject model achieves perfect accuracy (100\%) on the intra test set. Two of the three cross-subject test sets (test1 and test3) reach 87.5\%, while cross test2 scores only 25\%, which is exactly at chance level. Per-class accuracy is broken down in Fig.~\ref{fig:per_class}.
+Overall accuracy across all test splits is shown in Fig.~\ref{fig:accuracy_summary}. The intra-subject model achieves perfect accuracy (100\%) on the intra test set. 
+Two of the three cross-subject test sets (test1 and test3) reach 87.5\%, while cross test2 scores only 25\%, which is exactly at chance level. Per-class accuracy is broken down in Fig.~\ref{fig:per_class}.
 
 \begin{figure}[htbp]
     \centering
@@ -151,7 +159,9 @@ Overall accuracy across all test splits is shown in Fig.~\ref{fig:accuracy_summa
     \label{fig:per_class}
 \end{figure}
 
-The confusion matrices in Fig.~\ref{fig:confusion} further clarify the failure mode of cross test2: the model predicts \textit{math} for every sample, which happens to be the only class it gets right (rest samples are misclassified as math along with everything else). This is a classic sign of the model having learned subject-specific features that do not generalize to this particular test subject. Cross test1 confuses rest with motor (1 sample) and memory with motor (1 sample), and cross test3 confuses math with memory (2 samples), both plausible class pairs given the cognitive overlap between those tasks.
+The confusion matrices in Fig.~\ref{fig:confusion} further clarify the failure mode of cross test2: the model predicts \textit{math} for every sample, which happens to be the only class it gets right (rest samples are misclassified as math along with everything else). 
+This is a classic sign of the model having learned subject-specific features that do not generalize to this particular test subject. 
+Cross test1 confuses rest with motor (1 sample) and memory with motor (1 sample), and cross test3 confuses math with memory (2 samples), both plausible class pairs given the cognitive overlap between those tasks.
 
 \begin{figure}[htbp]
     \centering
@@ -162,7 +172,9 @@ The confusion matrices in Fig.~\ref{fig:confusion} further clarify the failure m
 
 \subsection{Representational Structure}
 
-Fig.~\ref{fig:tsne} shows t-SNE projections of the penultimate layer activations. For the intra model, class clusters are well-separated in both the train and test projections, consistent with the perfect test accuracy. For the cross model, the train set forms tight clusters, but the test1 projection is noticeably more scattered, which aligns with the drop from near-zero training loss to 87.5\% test accuracy. This gap between train and test representations suggests some degree of overfitting to the training subjects.
+Fig.~\ref{fig:tsne} shows t-SNE projections of the penultimate layer activations. 
+For both the inra and cross model, the training class clusters are well-separated. The test data is relatively more scattered, especially for the cross-subject model, which reflects the drop from near-zero training loss to 87.5\% test accuracy.
+This gap between train and test representations suggests some degree of overfitting to the training subjects.
 
 \begin{figure}[htbp]
     \centering
@@ -173,7 +185,9 @@ Fig.~\ref{fig:tsne} shows t-SNE projections of the penultimate layer activations
 
 \subsection{Sensor Saliency}
 
-Fig.~\ref{fig:saliency} shows sensor saliency for the cross model computed via input gradients. The distribution of gradient magnitudes is smooth and gradual across all four classes, indicating that no single sensor dominates the classification. The math class shows a notably higher peak gradient magnitude ($\sim\!1.3 \times 10^{-9}$) compared to the other classes ($\sim\!3$--$8 \times 10^{-10}$), which suggests the model relies on a somewhat more localized set of sensors when classifying math, while the remaining classes are handled through a more distributed pattern across the sensor array.
+Fig.~\ref{fig:saliency} shows sensor saliency for the cross model computed via input gradients. 
+The distribution of gradient magnitudes is smooth and gradual across all four classes, indicating that no single sensor dominates the classification. 
+The math class shows a notably higher peak gradient magnitude ($\sim\!1.3 \times 10^{-9}$) compared to the other classes ($\sim\!3$--$8 \times 10^{-10}$), which suggests the model relies on a somewhat more localized set of sensors when classifying math, while the remaining classes are handled through a more distributed pattern across the sensor array.
 
 \begin{figure}[h]
     \centering
@@ -184,21 +198,19 @@ Fig.~\ref{fig:saliency} shows sensor saliency for the cross model computed via i
 
 
 \section{Conclusion}
-In this study we built a deep learning model to classify MEG data into one of four possible states: resting, memory, math, and motor.
+To summarize, in this study we built a deep learning model to classify MEG data into one of four possible states: resting, memory, math, and motor.
 Two types of classification tasks were performed, these are intra-subject classification and cross-subject classification.
-We were given one training and test dataset for intra-subject classification.
-For cross-subject classification we were provided with one training set and three test sets.
+%We were given one training and test dataset for intra-subject classification.
+%For cross-subject classification we were provided with one training set and three test sets.
 Preprocessing consisted of downsampling and z-score normalization.
 For classification we used a 1D-CNN along with the Adam optimizer and Cross Entropy Loss.
-The neural network consisted of two convolutional blocks, each followed by a ReLU and max pooling operation.
-This is followed by global average pooling and fully connected layer that uses ReLU.
-Dropout is subsequently applied after which there is a final fully connected layer.
-After training, the model achieved a 100\% on the intra-subject test set.
-Cross-subject test sets 1 and 3 both achieved 87.5 \% accuracy.
-However, cross-subject test set 2 was not able to exceed the chance baseline of 25\%.
-We estimate that this issue stems from overfitting.
-Overall, we conclude that 1D-CNNs are well suited for intra-subject classification of MEG data.
-The results also suggest that cross-subject classification remain challenging, though not unfeasible.
+%The neural network consisted of two convolutional blocks, each followed by a ReLU and max pooling operation.
+%This is followed by global average pooling and fully connected layer that uses ReLU.
+%Dropout is subsequently applied after which there is a final fully connected layer.
+After training and hyperparameter tuning, the model achieved a 100\% on the intra-subject test set, while the Cross-subject test sets 1 and 3 both achieved 87.5 \% accuracy.
+However, cross-subject test set 2 was not able to exceed the chance baseline of 25\%. 
+The results align with the existing work, and affirm that Neural Networks tend to overfit to subject-specific features and struggle to generalize to unseen subjects, potentially caused by differences in brain anatomy, cognitive strategies, and signal-to-noise ratios between subjects.
+Tactics to improve the accuracy of models on cross-subject classification include extensive alignment strategies or massive training sets \cite{Frontiers2020}, and are interesting for future research.
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
