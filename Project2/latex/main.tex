@@ -34,7 +34,14 @@
 \maketitle
 
 \section{Abstract}
-Magnetoencephalography (MEG) data is classified into one of four states (rest, math, motor, memory) using a one-dimensional convolutional neural network (1D-CNN).
+Magnetoencephalography (MEG) data is classified into one of four states (rest, math, motor, memory) using a deep learning model.
+Both intra-subject classification and cross-subject classification are performed using a one-dimensional convolutional neural network (1D-CNN).
+During preprocessing, the MEG signals are downsampled after which z-score normalization is applied.
+Training was done using the Adam optimizer and cross entropy loss.
+The model achieved 100\% accuracy at intra-subject classification.
+For cross-subject classification, the model achieved 87.5\% accuracy on two out of three test sets.
+However, the model only achieved 25\% accuracy for the remaining test set, which is equal to a baseline chance performance.
+We therefore conclude that a 1D-CNN can successfully classify MEG data in specific subjects, though it struggles at making generalizations for the cross-subject task.
 
 \section{Introduction}
 Magnetoencephalography (MEG) is a neuroimaging technique that maps brain activity.
@@ -192,7 +199,7 @@ Cross-subject test sets 1 and 3 both achieved 87.5 \% accuracy.
 However, cross-subject test set 2 was not able to exceed the chance baseline of 25\%.
 We estimate that this issue stems from overfitting.
 Overall, we conclude that 1D-CNNs are well suited for intra-subject classification of MEG data.
-The results also suggest that cross-subject is a bit more difficult, though not impossible.
+The results also suggest that cross-subject classification remain challenging, though not unfeasible.
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
