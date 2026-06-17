@@ -98,7 +98,7 @@ The computational flow of the network is as follows
 
 We apply hyperparameter tuning on the cross-subject data sets using grid search on dropout rate (for CNN), learning rate (for the optimizer), and batch size, which regards the batches in which the data is loaded.
 The hyperparameter configuration that has the highest accuracy during is used for both experiments (intra- and cross-subject).  
-We train and test the model for intra and cross-subject classification separately. 
+We train and test the model for intra and cross-subject classification separately, using 5-fold cross validation with StratifiedKFold from the Scikit-Learn library. 
 
 For evaluating the performance of the model we use the measures precision, recall and accuracy. 
 Furthermore, we use t-SNE projection to convert the high-dimensional penultimate layer activations data into a twodimensional scatterplot that visualizes pairwise similarities \cite{vandermaaten2008visualizing}. 
@@ -129,7 +129,7 @@ Fig.~\ref{fig:raw_signal} shows a representative sample of raw MEG signals per c
 \subsection{Training}
 
 Initially, the model selected for the experiments had more channels and layers, and thus more parameters. The resulting classification was heavily overfitting, which we improved upon by downsizing the layers and reducing the number of convolutional layers.
-The hyperparameter configuration with the highest accuracy for the cross-validation set is $learning\_rate=0.001, batch\_size=16$ and $dropout\_rate=0.2$. We continue with these parameters for both experiments.
+The hyperparameter configuration with the highest accuracy for the cross-validation set is $learning\_rate=0.001, batch\_size=16$ and $dropout\_rate=0.2$. We continue with these parameters for both experiments. All results are the average of 5-fold cross validation.
 
 \begin{figure}[htbp]
     \centering
@@ -207,7 +207,7 @@ For classification we used a 1D-CNN along with the Adam optimizer and Cross Entr
 %The neural network consisted of two convolutional blocks, each followed by a ReLU and max pooling operation.
 %This is followed by global average pooling and fully connected layer that uses ReLU.
 %Dropout is subsequently applied after which there is a final fully connected layer.
-After training and hyperparameter tuning, the model achieved a 100\% on the intra-subject test set, while the Cross-subject test sets 1 and 3 both achieved 87.5 \% accuracy.
+After applying hyperparameter tuning and cross validation, the model achieved a 100\% on the intra-subject test set, while the Cross-subject test sets 1 and 3 both achieved 87.5 \% accuracy.
 However, cross-subject test set 2 was not able to exceed the chance baseline of 25\%. 
 The results align with the existing work, and affirm that Neural Networks tend to overfit to subject-specific features and struggle to generalize to unseen subjects, potentially caused by differences in brain anatomy, cognitive strategies, and signal-to-noise ratios between subjects.
 Tactics to improve the accuracy of models on cross-subject classification include extensive alignment strategies or massive training sets \cite{Frontiers2020}, and are interesting for future research.
