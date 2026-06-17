@@ -47,9 +47,21 @@ For cross-subject classification, a model is first trained on a group of subject
 We need to perform both types of classification and subsequently compare their respective accuracy.
 We will also explain our choices of hyper-parameters regarding the model architecture, and investigate how they affect the model's performance.
 
-\section{Related work}
-Relevant literature
-Laurens
+\section{Related Work}
+Recent advancements in brain decoding have increasingly favored deep learning approaches over traditional machine learning methods that rely on hand-crafted features. 
+Deep neural networks, particularly Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs), are capable of directly extracting complex spatiotemporal features from raw Magnetoencephalography (MEG) and Electroencephalography (EEG) signals. 
+For instance, compact architectures inspired by EEG studies have been successfully adapted to MEG data to decode various mental states, demonstrating superior feature representation abilities \cite{Raza2023}.
+
+A significant challenge in neural decoding is the distinction between intra-subject and cross-subject classification. 
+Intra-subject models generally achieve high accuracy as they are trained and tested on the specific functional mappings of a single individual. 
+However, cross-subject classification suffers from severe performance degradation due to inter-subject variability in brain anatomy, cognitive strategies, and signal-to-noise ratios. 
+Studies have shown that deep learning models trained on specific subjects often overfit to subject-specific features and struggle to generalize to unseen subjects without the use of extensive alignment strategies or massive training sets \cite{Frontiers2020}. 
+To bridge this gap, various architectures, such as hybrid gated recurrent networks, have been proposed specifically to tackle inter-subject MEG decoding by learning more robust, subject-invariant representations \cite{Li2021}.
+
+Furthermore, the classification of distinct cognitive and motor tasks remains a core focus in Brain-Computer Interface (BCI) research. 
+Recent work utilizing MEG has demonstrated the feasibility of decoding mental imagery tasks such as cognitive processes (e.g., mathematical subtraction, working memory) and motor execution, on a single-trial basis \cite{Raza2023}. 
+These studies emphasize that while cognitive and motor tasks elicit distinct neural signatures, the varying representational structures require models that can effectively map both the localized sensor activations (such as high-intensity peaks during math tasks) and distributed patterns associated with resting states.
+
 
 \section{Approach}
 Methodology, technical details and choices made
