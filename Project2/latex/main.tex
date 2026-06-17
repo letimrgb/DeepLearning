@@ -64,9 +64,35 @@ These studies emphasize that while cognitive and motor tasks elicit distinct neu
 
 
 \section{Approach}
-Methodology, technical details and choices made
+The data is MEG signals that have been gathered from test subjects either in a state of rest or preforming a math and story task, a working memory task or a motor task. 
+There is one test and train set for intra-subject classification, and one train set and three test sets for cross-subject classification. We will treat the two types of classifications as separate experiments, but use the same model for both.
+Each set has 35624 recorded timesteps for 248 magnetometer sensors placed on the human scalp. 
+During preprocessing, the data is downsampled with a factor of 10 using the average of the signal. We apply z-score normalization using the StandardScaler from scikit-learn: one fit for the intra-subject sets and one for the cross-subject sets.
 
-Lara, strategy (dataset, strat), preprocessen (norm), model.
+The model we used to classify the signals is a one-dimensional convolutional neural network (1D-CNN). Compared to other Neural Networks, 1D-CNN has significantly reduced computational cost with only a slight reduction in classification accuracy \cite{app15073593}.
+We use the Adam optimizer and Cross Entropy Loss from the Torch library. The neural network, also implemented with Torch, consists of two convolutional blocks that each is followed by ReLU and a max pooling operation, to reduce the temporal resolution.
+The network then applies global average pooling and a fully connected classifier with a ReLU activation. To reduce overfitting, the network then applies dropout, and finishes with a fully connected layer that results in logits for the four target classes.
+The computational flow of the network is
+\[
+\begin{aligned}
+\text{Input}
+&\rightarrow \mathrm{Conv1D}(248\rightarrow32,kernel\_size=5,padding=2) \\
+&\rightarrow \mathrm{ReLU}
+\rightarrow \mathrm{MaxPool1D}(4) \\
+&\rightarrow \mathrm{Conv1D}(32\rightarrow64,kernel\_size=3,padding=1) \\
+& \rightarrow \mathrm{ReLU}
+\rightarrow \mathrm{MaxPool1D}(4) \\
+&\rightarrow \mathrm{AdaptiveAvgPool1D}(1)
+\rightarrow \mathrm{FC}(64\rightarrow32) \\
+&\rightarrow \mathrm{ReLU}
+\rightarrow \mathrm{Dropout}(p)
+\rightarrow \mathrm{FC}(32\rightarrow4).
+\end{aligned}
+\]
+
+During training, we apply hyperparameter tuning using grid search on dropout rate (for CNN), learning rate (for the optimizer), and batch size, which regards the batches in which the data is loaded. 
+The hyperparameter configuration that has the highest accuracy during training is used for testing. We train and test the model for intra and cross-subject classification separately.
+For evaluating the performance of the model we use the measures precision, recall and accuracy.
 
 \section{Results}
 
